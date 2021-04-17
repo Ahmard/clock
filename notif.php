@@ -1,22 +1,19 @@
 <?php
 
-include __DIR__.'/vendor/autoload.php';
+include __DIR__ . '/vendor/autoload.php';
 
-use Joli\JoliNotif\Notification;
-use Joli\JoliNotif\NotifierFactory;
+use Clock\Clock;
+use Clock\Notification;
 
-// Create a Notifier
-$notifier = NotifierFactory::create();
+$notification = Notification::create()
+    ->setTitle('My Title')
+    ->setIcon('/drive/path/to/icon.jpg');
 
-// Create your notification
-$notification =
-    (new Notification())
-        ->setTitle('Notification title')
-        ->setBody('This is the body of your notification')
-        ->setIcon(__DIR__.'/path/to/your/icon.png')
-        ->addOption('subtitle', 'This is a subtitle') // Only works on macOS (AppleScriptNotifier)
-        ->addOption('sound', 'Frog') // Only works on macOS (AppleScriptNotifier)
-;
+$notification
+    ->setBody('My notification body here')
+    ->send();
 
-// Send it
-$notifier->send($notification);
+Clock::forEach('2 minutes', function () use ($notification){
+    $notification->setBody('Two minutes has passed');
+    $notification->send();
+});

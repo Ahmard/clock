@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "409d6940efa41ec5d0349d485e20435a",
+    "content-hash": "dc2efb6c22d54f5fddfe2fb78b78bb7c",
     "packages": [
         {
             "name": "evenement/evenement",
@@ -52,6 +52,63 @@
                 "source": "https://github.com/igorw/evenement/tree/master"
             },
             "time": "2017-07-23T21:35:13+00:00"
+        },
+        {
+            "name": "fightbulc/moment",
+            "version": "1.33.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fightbulc/moment.php.git",
+                "reference": "435d68e481ab0a716358926fb51966e696d297e3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fightbulc/moment.php/zipball/435d68e481ab0a716358926fb51966e696d297e3",
+                "reference": "435d68e481ab0a716358926fb51966e696d297e3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.36 || ^5.5 || ^6.5 || ^7.5 || ^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Moment\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tino Ehrich",
+                    "email": "tino@bigpun.me",
+                    "role": "developer"
+                }
+            ],
+            "description": "Parse, validate, manipulate, and display dates in PHP w/ i18n support. Inspired by moment.js",
+            "keywords": [
+                "date",
+                "display",
+                "format",
+                "i18n",
+                "locale",
+                "manipulate",
+                "moment",
+                "parse",
+                "time",
+                "translation",
+                "validate"
+            ],
+            "support": {
+                "issues": "https://github.com/fightbulc/moment.php/issues",
+                "source": "https://github.com/fightbulc/moment.php/tree/1.33.0"
+            },
+            "time": "2021-03-27T13:10:08+00:00"
         },
         {
             "name": "jolicode/jolinotif",
@@ -119,92 +176,6 @@
                 }
             ],
             "time": "2021-03-07T12:30:00+00:00"
-        },
-        {
-            "name": "league/period",
-            "version": "4.11.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/period.git",
-                "reference": "8a171923aca1f22c68273876c8d45336a9d2110a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/period/zipball/8a171923aca1f22c68273876c8d45336a9d2110a",
-                "reference": "8a171923aca1f22c68273876c8d45336a9d2110a",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": "^7.2.0 || ^8.0"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.16",
-                "infection/infection": "^0",
-                "phpstan/phpstan": "^0.12",
-                "phpstan/phpstan-phpunit": "^0.12",
-                "phpstan/phpstan-strict-rules": "^0.12",
-                "phpunit/phpunit": "^8.0 || ^9.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "League\\Period\\": "src"
-                },
-                "files": [
-                    "src/functions_include.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ignace Nyamagana Butera",
-                    "email": "nyamsprod@gmail.com",
-                    "homepage": "https://github.com/nyamsprod/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Time range API for PHP",
-            "homepage": "http://period.thephpleague.com",
-            "keywords": [
-                "boundaries",
-                "calendar",
-                "collection",
-                "date",
-                "dateinterval",
-                "dateperiod",
-                "datetime",
-                "gap",
-                "intersections",
-                "interval",
-                "period",
-                "range",
-                "schedule",
-                "sequence",
-                "time",
-                "timeline",
-                "unions"
-            ],
-            "support": {
-                "docs": "https://period.thephpleague.com",
-                "issues": "https://github.com/thephpleague/period/issues",
-                "source": "https://github.com/thephpleague/period"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/sponsors/nyamsprod",
-                    "type": "github"
-                }
-            ],
-            "time": "2020-11-11T19:24:30+00:00"
         },
         {
             "name": "react/child-process",

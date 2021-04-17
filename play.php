@@ -1,9 +1,11 @@
 <?php
 
-use React\ChildProcess\Process;
+use Clock\Clock;
+use Clock\Sound;
+use React\EventLoop\Factory;
 
 require 'vendor/autoload.php';
 
-\Clock\Clock::setLoop(\React\EventLoop\Factory::create());
+Clock::setLoop(Factory::create());
 
-\Clock\Sound::playReminder2();
+Sound::play(__DIR__ . '/raw/alarm.wav');

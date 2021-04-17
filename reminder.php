@@ -2,17 +2,14 @@
 
 use Clock\Clock;
 use Clock\Exceptions\ClockException;
-use Clock\Sound;
 
 require 'vendor/autoload.php';
 
 Clock::create();
 
 try {
-    Clock::forEachMinute(20, function () {
-        dump('Sounding alarm...');
-        Sound::playReminder1();
-    });
+
+    Clock::alarm202020();
 
 } catch (ClockException $e) {
     echo $e;

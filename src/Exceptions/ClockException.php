@@ -4,7 +4,9 @@
 namespace Clock\Exceptions;
 
 
-class ClockException extends \Exception
+use Exception;
+
+class ClockException extends Exception
 {
 
 }
