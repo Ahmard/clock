@@ -8,6 +8,7 @@ use Clock\Clock;
 use Clock\Exceptions\ClockException;
 use Clock\Sound;
 use Closure;
+use Moment\MomentException;
 use React\EventLoop\TimerInterface;
 
 trait AlarmsTrait
@@ -18,7 +19,7 @@ trait AlarmsTrait
      * Use the 20-20-20 rule. Every 20 minutes, take a 20-second break and focus your eyes on something at least 20 feet away.
      * @link https://opto.ca/health-library/the-20-20-20-rule
      *
-     * @throws ClockException
+     * @throws ClockException|MomentException
      */
     public static function alarm202020(?Closure $closure = null): void
     {

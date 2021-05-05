@@ -7,7 +7,6 @@ namespace Clock;
 use Clock\Traits\AlarmsTrait;
 use Clock\Traits\ForEachTrait;
 use Closure;
-use League\Period\Datepoint;
 use Moment\Moment;
 use Moment\MomentException;
 use React\EventLoop\Factory;
@@ -30,7 +29,7 @@ class Clock
      * @throws Exceptions\ClockException
      * @throws MomentException
      */
-    public static function alarm(string|Moment $moment, ?Closure $closure = null): void
+    public static function alarm($moment, ?Closure $closure = null): void
     {
         if (is_string($moment)) {
             $moment = new Moment($moment);
@@ -96,16 +95,6 @@ class Clock
     }
 
     /**
-     * Cancel clock
-     *
-     * @param TimerInterface $timer
-     */
-    public static function stop(TimerInterface $timer): void
-    {
-        self::getLoop()->cancelTimer($timer);
-    }
-
-    /**
      * Run ReactPHP's event-loop
      */
     public static function run(): void
@@ -115,5 +104,15 @@ class Clock
         }
 
         self::$loop->run();
+    }
+
+    /**
+     * Cancel clock
+     *
+     * @param TimerInterface $timer
+     */
+    public static function stop(TimerInterface $timer): void
+    {
+        self::getLoop()->cancelTimer($timer);
     }
 }
