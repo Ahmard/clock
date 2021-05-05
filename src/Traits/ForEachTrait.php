@@ -10,6 +10,7 @@ use Closure;
 use Moment\Moment;
 use Moment\MomentException;
 use React\EventLoop\TimerInterface;
+use TypeError;
 
 trait ForEachTrait
 {
@@ -19,7 +20,7 @@ trait ForEachTrait
      * @throws ClockException
      * @throws MomentException
      */
-    public static function forEachHour(int|Closure $hourOrClosure, ?Closure $closure = null): void
+    public static function forEachHour($hourOrClosure, ?Closure $closure = null): void
     {
         $hourHandler = function (int $minutes, Closure $closure) {
             return function (TimerInterface $timer) use ($closure, $minutes) {
@@ -47,7 +48,7 @@ trait ForEachTrait
      * @throws ClockException
      * @throws MomentException
      */
-    public static function forEachMinute(int|Closure $minuteOrClosure, ?Closure $closure = null): void
+    public static function forEachMinute($minuteOrClosure, ?Closure $closure = null): void
     {
         $minuteHandler = function (int $seconds, Closure $closure) {
             return function (TimerInterface $timer) use ($closure, $seconds) {
@@ -75,7 +76,7 @@ trait ForEachTrait
      * @throws ClockException
      * @throws MomentException
      */
-    public static function forEachSecond(int|Closure $secondOrClosure, ?Closure $closure = null): void
+    public static function forEachSecond($secondOrClosure, ?Closure $closure = null): void
     {
         if (is_int($secondOrClosure)) {
             if (null == $closure) {
@@ -94,13 +95,22 @@ trait ForEachTrait
      * @param Closure $closure
      * @throws MomentException
      */
-    public static function forEach(string|int|Moment $moment, Closure $closure)
+    public static function forEach($moment, Closure $closure): void
     {
-        $seconds = match (get_debug_type($moment)) {
-            Moment::class => $moment->getTimestamp() - time(),
-            'string' => (new Moment($moment))->getTimestamp() - time(),
-            'int' => $moment
-        };
+        switch (gettype($moment)){
+            case Moment::class:
+                $seconds = $moment->getTimestamp() - time();
+                break;
+            case 'string':
+                $seconds = (new Moment($moment))->getTimestamp() - time();
+                break;
+            case 'integer':
+            case 'int':
+                $seconds = $moment;
+                break;
+            default:
+                throw new TypeError("Value passed to first parameter must be of type string|int|Moment\Moment");
+        }
 
         self::getLoop()->addPeriodicTimer(
             1,
