@@ -83,15 +83,17 @@ class Clock
      *
      * @param bool $runOnShutdown Whether to run ReactPHP's event-loop on register_shutdown_function is executed
      */
-    public static function create(bool $runOnShutdown = true): void
+    public static function create(bool $runOnShutdown = true): LoopInterface
     {
-        if (!isset(self::$loop) && $runOnShutdown) {
-            register_shutdown_function(function () {
-                self::run();
-            });
+        if (!isset(self::$loop)) {
+            self::setLoop(Factory::create());
         }
 
-        self::setLoop(Factory::create());
+        if ($runOnShutdown) {
+            register_shutdown_function(fn() => self::run());
+        }
+
+        return self::getLoop();
     }
 
     /**
