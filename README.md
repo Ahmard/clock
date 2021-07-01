@@ -11,6 +11,10 @@ composer require ahmard/clock
 ```php
 use Clock\Clock;
 
+Clock::after(1, function (){
+    echo 'Executed';
+});
+
 Clock::forEachSecond(function (){
     echo "1 second has passed\n";   
 });
@@ -23,6 +27,10 @@ Clock::forEachSecond(5, function (){
 ```php
 use Clock\Clock;
 
+Clock::after('1 minute', function (){
+    echo 'Executed';
+});
+
 Clock::forEachMinute(2, function (){
     echo "2 minutes has passed\n";   
 });
@@ -30,6 +38,10 @@ Clock::forEachMinute(2, function (){
 - Hours
 ```php
 use Clock\Clock;
+
+Clock::after('1 hour', function (){
+    echo 'Executed';
+});
 
 Clock::forEachHour(1, function (){
     echo "1 hour has passed\n";   

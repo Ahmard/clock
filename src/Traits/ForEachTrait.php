@@ -97,7 +97,31 @@ trait ForEachTrait
      */
     public static function forEach($moment, Closure $closure): void
     {
-        switch (gettype($moment)){
+        $seconds = self::normaliseMoment($moment);
+        self::getLoop()->addPeriodicTimer(
+            1,
+            function (TimerInterface $timer) use ($seconds, $closure) {
+                static $counter = 1;
+
+                if ($counter == $seconds) {
+                    $counter = 0;
+                    $closure($timer);
+                }
+
+                $counter++;
+            }
+        );
+    }
+
+
+    /**
+     * @throws MomentException
+     * @var string|int|Moment $moment
+     * @return int
+     */
+    protected static function normaliseMoment($moment): int
+    {
+        switch (gettype($moment)) {
             case Moment::class:
                 $seconds = $moment->getTimestamp() - time();
                 break;
@@ -112,18 +136,6 @@ trait ForEachTrait
                 throw new TypeError("Value passed to first parameter must be of type string|int|Moment\Moment");
         }
 
-        self::getLoop()->addPeriodicTimer(
-            1,
-            function (TimerInterface $timer) use ($seconds, $closure) {
-                static $counter = 1;
-
-                if ($counter == $seconds) {
-                    $counter = 0;
-                    $closure($timer);
-                }
-
-                $counter++;
-            }
-        );
+        return $seconds;
     }
 }

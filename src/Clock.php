@@ -22,6 +22,19 @@ class Clock
     protected static LoopInterface $loop;
 
     /**
+     * Execute closure after x milliseconds
+     *
+     * @param string|int|Moment $moment
+     * @param Closure $closure
+     * @throws MomentException
+     */
+    public static function after($moment, Closure $closure): void
+    {
+        $seconds = self::normaliseMoment($moment);
+        self::getLoop()->addTimer($seconds, $closure);
+    }
+
+    /**
      * Set an alarm
      *
      * @param string|Moment $moment
